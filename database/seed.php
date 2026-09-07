@@ -10,26 +10,49 @@ $dotenv->load();
 
 require __DIR__ . '/../config/database.php';
 
-Capsule::table('salles')->insert([
+$salles = [
     [
-        'nom' => 'Salle A101',
+        'nom' => 'Amphithéâtre A',
         'batiment' => 'Bâtiment A',
-        'capacite' => 30,
+        'capacite' => 250,
+        'type' => 'amphitheatre',
+        'active' => true,
+    ],
+    [
+        'nom' => 'Salle B12',
+        'batiment' => 'Bâtiment B',
+        'capacite' => 40,
         'type' => 'cours',
         'active' => true,
     ],
     [
-        'nom' => 'Salle Informatique B202',
-        'batiment' => 'Bâtiment B',
-        'capacite' => 25,
+        'nom' => 'Laboratoire Chimie',
+        'batiment' => 'Bâtiment C',
+        'capacite' => 24,
+        'type' => 'laboratoire',
+        'active' => true,
+    ],
+    [
+        'nom' => 'Salle Informatique 1',
+        'batiment' => 'Bâtiment D',
+        'capacite' => 30,
         'type' => 'informatique',
         'active' => true,
     ],
     [
-        'nom' => 'Amphithéâtre C',
-        'batiment' => 'Bâtiment C',
-        'capacite' => 150,
-        'type' => 'amphitheatre',
+        'nom' => 'Salle de réunion',
+        'batiment' => 'Bâtiment E',
+        'capacite' => 12,
+        'type' => 'reunion',
         'active' => true,
     ],
-]);
+];
+
+foreach ($salles as $salle) {
+    Capsule::table('salles')->updateOrInsert(
+        ['nom' => $salle['nom']],
+        $salle
+    );
+}
+
+echo "Données initiales ajoutées avec succès !" . PHP_EOL;
