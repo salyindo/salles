@@ -21,6 +21,16 @@ class SalleController
         require __DIR__ . '/../../templates/salle/index.php';
     }
 
+    public function apiIndex(): void
+    {
+        header('Content-Type: application/json; charset=utf-8');
+
+        echo json_encode(
+            array_map(static fn ($salle): array => $salle->toArray(), $this->salleRepository->all()),
+            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+        );
+    }
+
     public function show(int $id): void
     {
         $salle = $this->salleRepository->find($id);

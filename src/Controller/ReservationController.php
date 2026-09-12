@@ -28,6 +28,16 @@ class ReservationController
         require __DIR__ . '/../../templates/reservation/index.php';
     }
 
+    public function apiIndex(): void
+    {
+        header('Content-Type: application/json; charset=utf-8');
+
+        echo json_encode(
+            array_map(static fn ($reservation): array => $reservation->toArray(), $this->reservationRepository->all()),
+            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+        );
+    }
+
     public function show(int $id): void
     {
         $reservation = $this->reservationRepository->find($id);

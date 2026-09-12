@@ -9,6 +9,7 @@ $dotenv->load();
 
 $capsule = require __DIR__ . '/../config/database.php';
 
+require_once __DIR__ . '/migrations/001_create_salles_table.php';
 require_once __DIR__ . '/migrations/002_create_reservations_table.php';
 
 echo "Migration exécutée avec succès !" . PHP_EOL;

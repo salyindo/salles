@@ -10,6 +10,7 @@ return function (FastRoute\RouteCollector $r): void {
 
     // Salles
     $r->addRoute('GET', '/salles', [SalleController::class, 'index']);
+    $r->addRoute('GET', '/api/salles', [SalleController::class, 'apiIndex']);
     $r->addRoute('GET', '/salles/create', [SalleController::class, 'create']);
     $r->addRoute('POST', '/salles', [SalleController::class, 'store']);
     $r->addRoute('GET', '/salles/{id:\d+}', [SalleController::class, 'show']);
@@ -18,6 +19,7 @@ return function (FastRoute\RouteCollector $r): void {
 
     // Réservations
     $r->addRoute('GET', '/reservations', [ReservationController::class, 'index']);
+    $r->addRoute('GET', '/api/reservations', [ReservationController::class, 'apiIndex']);
     $r->addRoute('GET', '/reservations/create', [ReservationController::class, 'create']);
     $r->addRoute('POST', '/reservations', [ReservationController::class, 'store']);
     $r->addRoute('GET', '/reservations/{id:\d+}', [ReservationController::class, 'show']);

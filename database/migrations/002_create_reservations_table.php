@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-Capsule::schema()->create('reservation', function ($table) {
+Capsule::schema()->create('reservations', function ($table) {
     $table->id();
 
     $table->foreignId('salle_id')

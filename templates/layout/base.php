@@ -3,55 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>
-        <?= htmlspecialchars($pageTitle ?? 'Réservation de salles', ENT_QUOTES, 'UTF-8') ?>
-    </title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f5f5f5;
-        }
-
-        header {
-            background: #222;
-            color: white;
-            padding: 20px;
-        }
-
-        main {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-            background: white;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        .error {
-            color: red;
-            margin-top: 5px;
-        }
-
-        .success {
-            color: green;
-        }
-    </style>
+    <title><?= htmlspecialchars($pageTitle ?? 'Réservation de salles', ENT_QUOTES, 'UTF-8') ?></title>
+    <link rel="stylesheet" href="/assets/style.css">
 </head>
-
 <body>
-
 <header>
-    <h1>Réservation de salles</h1>
+    <div class="site-header">
+        <a class="brand" href="/">
+            <span class="brand-mark">RS</span>
+            <span>
+                <strong>Réservation</strong>
+                <small>Campus universitaire</small>
+            </span>
+        </a>
+        <nav class="main-nav" aria-label="Navigation principale">
+            <a href="/salles">Salles</a>
+            <a href="/reservations">Réservations</a>
+        </nav>
+    </div>
 </header>
-
-<main>
+<main class="page-shell">
     <?= $content ?? '' ?>
 </main>
-
 </body>
 </html>
