@@ -57,7 +57,7 @@ class SalleController
         $result = $this->validator->validate($data);
 
         if (!$result->isValid()) {
-            $errors = $result->errors;
+           $errors = $result->errors();
 
             require __DIR__ . '/../../templates/salle/form.php';
             return;

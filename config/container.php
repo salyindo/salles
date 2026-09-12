@@ -1,5 +1,7 @@
 <?php
 
+
+
 use App\Application;
 use App\Controller\ReservationController;
 use App\Controller\SalleController;
@@ -12,9 +14,10 @@ use App\Service\CreerReservationService;
 use App\Validation\ReservationValidator;
 use App\Validation\SalleValidator;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use DI\autowire;
-use DI\factory;
 use FastRoute\Dispatcher;
+
+use function DI\autowire;
+use function DI\factory;
 
 return [
 
@@ -55,4 +58,3 @@ return [
     // Application
     Application::class => autowire(),
 ];
-
