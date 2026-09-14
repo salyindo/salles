@@ -66,6 +66,23 @@ docker push mon-compte/reservation-salles:1.0.0
 docker push mon-compte/reservation-salles:latest
 ```
 
+## Base MySQL Aiven
+
+Dans Aiven, créer un service **MySQL**, activer l'accès public, puis récupérer
+les paramètres dans **Overview > Connection information**. Les variables à
+définir dans Render sont `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME` et
+`DB_PASSWORD`.
+
+Aiven fournit aussi un certificat CA dans **CA Certificate**. Le télécharger
+dans le projet sous `config/aiven-ca.pem`, puis définir :
+
+```env
+DB_SSL_CA=/var/www/html/config/aiven-ca.pem
+```
+
+Le fichier `config/aiven-ca.pem` est un certificat public, mais le mot de passe
+Aiven doit rester uniquement dans les variables secrètes de Render.
+
 ## Tests
 
 ```bash
