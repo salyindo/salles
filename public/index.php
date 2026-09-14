@@ -9,23 +9,13 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-
-
 $dotenv = Dotenv::createImmutable(dirname(__DIR__));
-$dotenv->load();
-
-
+$dotenv->safeLoad();
 
 $builder = new ContainerBuilder();
-
-$builder->addDefinitions(
-    dirname(__DIR__) . '/config/container.php'
-);
-
+$builder->addDefinitions(dirname(__DIR__) . '/config/container.php');
 $container = $builder->build();
 
 $container->get(Capsule::class);
-
 $application = $container->get(Application::class);
-
 $application->run();
