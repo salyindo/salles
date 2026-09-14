@@ -15,6 +15,7 @@ use App\Validation\ReservationValidator;
 use App\Validation\SalleValidator;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use FastRoute\Dispatcher;
+use Psr\Container\ContainerInterface;
 
 use function DI\autowire;
 use function DI\factory;
@@ -55,6 +56,13 @@ return [
         return FastRoute\simpleDispatcher($routes);
     }),
 
-    // Application
-    Application::class => autowire(),
+    // Application : le conteneur reste uniquement dans le câblage PHP-DI.
+    Application::class => factory(
+        function (ContainerInterface $container, Dispatcher $dispatcher): Application {
+            return new Application(
+                $dispatcher,
+                static fn (string $controllerClass): object => $container->get($controllerClass)
+            );
+        }
+    ),
 ];

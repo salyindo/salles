@@ -3,13 +3,12 @@
 namespace App;
 
 use FastRoute\Dispatcher;
-use Psr\Container\ContainerInterface;
 
 class Application
 {
     public function __construct(
-        private ContainerInterface $container,
-        private Dispatcher $dispatcher
+        private Dispatcher $dispatcher,
+        private \Closure $controllerResolver
     ) {
     }
 
@@ -51,7 +50,7 @@ class Application
 
                 [$controllerClass, $method] = $handler;
 
-                $controller = $this->container->get($controllerClass);
+                $controller = ($this->controllerResolver)($controllerClass);
 
                 $controller->$method(...array_values($vars));
 
