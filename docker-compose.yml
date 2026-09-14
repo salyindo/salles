@@ -15,7 +15,7 @@ services:
       DB_PASSWORD: root
     volumes:
       - .:/var/www/html
-    command: sh -c "./commande && php-fpm"
+    command: sh -c "php commande.php && php-fpm"
     depends_on:
       mysql:
         condition: service_healthy

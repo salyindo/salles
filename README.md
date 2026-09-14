@@ -22,16 +22,16 @@ php database/migrate.php
 php database/seed.php
 ```
 
-Les deux commandes peuvent aussi être exécutées avec le script `commande` :
+Les deux commandes peuvent aussi être exécutées avec le fichier PHP `commande.php` :
 
 ```bash
-./commande
+php commande.php
 ```
 
 Avec Docker, utilise le réseau du conteneur PHP :
 
 ```bash
-docker compose exec php ./commande
+docker compose exec php php commande.php
 ```
 
 Lancer l'application :
