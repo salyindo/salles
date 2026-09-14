@@ -1,9 +1,9 @@
-FROM php:8.3-fpm
+FROM php:8.3-cli
 
 RUN apt-get update \
-	&& apt-get install -y --no-install-recommends libxml2-dev \
-	&& docker-php-ext-install dom xml xmlwriter pdo pdo_mysql \
-	&& rm -rf /var/lib/apt/lists/*
+    && apt-get install -y --no-install-recommends libxml2-dev \
+    && docker-php-ext-install dom xml xmlwriter pdo pdo_mysql \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
@@ -11,4 +11,6 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN composer install
+RUN composer install --no-dev --optimize-autoloader
+
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-10000} -t public"]
