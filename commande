@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -eu
+
+printf '%s\n' 'Creation des tables...'
+php database/migrate.php
+
+printf '%s\n' 'Ajout des donnees initiales...'
+php database/seed.php
+
+printf '%s\n' 'Base de donnees preparee.'

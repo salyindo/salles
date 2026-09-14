@@ -15,7 +15,7 @@ services:
       DB_PASSWORD: root
     volumes:
       - .:/var/www/html
-    command: sh -c "php database/migrate.php && php database/seed.php && php-fpm"
+    command: sh -c "./commande && php-fpm"
     depends_on:
       mysql:
         condition: service_healthy
