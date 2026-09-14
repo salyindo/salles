@@ -28,6 +28,14 @@ Il n'est donc pas nécessaire de le versionner avec Git. Il doit être ajouté a
 /vendor/
 ```
 
+## [v1.0.0] - Version finale
+
+- Ajout de la configuration Docker avec PHP-FPM, Nginx et MySQL.
+- Initialisation automatique des migrations et des données de démonstration.
+- Correction de l'initialisation Eloquent via PHP-DI.
+- Ajout du filtrage des réservations par salle.
+- Ajout des instructions de publication GitHub et Docker Hub dans le README.
+
 
 
 

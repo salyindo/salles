@@ -147,6 +147,14 @@ final class InMemoryReservationRepository implements ReservationRepositoryInterf
         return $this->saved;
     }
 
+    public function bySalle(int $salleId): array
+    {
+        return array_values(array_filter(
+            $this->saved,
+            static fn (Reservation $reservation): bool => (int) $reservation->salle_id === $salleId
+        ));
+    }
+
     public function find(int $id): ?Reservation
     {
         return null;

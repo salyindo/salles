@@ -9,6 +9,8 @@ interface ReservationRepositoryInterface
 {
     public function all(): array;
 
+    public function bySalle(int $salleId): array;
+
     public function find(int $id): ?Reservation;
 
     public function findConflict(

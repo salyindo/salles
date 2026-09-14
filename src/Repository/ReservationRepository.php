@@ -12,6 +12,11 @@ class ReservationRepository implements ReservationRepositoryInterface
         return Reservation::all()->all();
     }
 
+    public function bySalle(int $salleId): array
+    {
+        return Reservation::where('salle_id', $salleId)->get()->all();
+    }
+
     public function find(int $id): ?Reservation
     {
         return Reservation::find($id);

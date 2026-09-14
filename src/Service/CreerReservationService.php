@@ -29,7 +29,7 @@ class CreerReservationService
         }
 
         // 2. Vérifier que la salle est active
-        if (!$salle->active) {
+        if ($salle->active === false) {
             throw new SalleIndisponibleException(
                 'La salle n\'est pas active.'
             );
@@ -76,14 +76,15 @@ class CreerReservationService
 
         // 7. Créer la réservation
         $reservation = new Reservation();
-
-        $reservation->salle_id = $dto->salleId;
-        $reservation->responsable = $dto->responsable;
-        $reservation->email = $dto->email;
-        $reservation->motif = $dto->motif;
-        $reservation->date_debut = $dto->dateDebut;
-        $reservation->date_fin = $dto->dateFin;
-        $reservation->statut = 'confirmée';
+        $reservation->setRawAttributes([
+            'salle_id' => $dto->salleId,
+            'responsable' => $dto->responsable,
+            'email' => $dto->email,
+            'motif' => $dto->motif,
+            'date_debut' => $dto->dateDebut->format('Y-m-d H:i:s'),
+            'date_fin' => $dto->dateFin->format('Y-m-d H:i:s'),
+            'statut' => 'confirmée',
+        ]);
 
         // 8. Enregistrer
         return $this->reservationRepository->save($reservation);

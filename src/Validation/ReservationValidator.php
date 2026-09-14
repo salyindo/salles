@@ -14,7 +14,7 @@ class ReservationValidator implements ValidatorInterface
             $errors['salle_id'] = 'La salle doit être un entier positif.';
         }
 
-        if (!v::stringType()->length(2, 120)->validate($data['responsable'] ?? null)) {
+        if (!v::stringType()->notEmpty()->length(2, 120)->validate($data['responsable'] ?? null)) {
             $errors['responsable'] = 'Le responsable doit contenir entre 2 et 120 caractères.';
         }
 
@@ -25,13 +25,13 @@ class ReservationValidator implements ValidatorInterface
         if (!v::stringType()->length(5, 255)->validate($data['motif'] ?? null)) {
             $errors['motif'] = 'Le motif doit contenir entre 5 et 255 caractères.';
         }
-if (!v::dateTime('Y-m-d\TH:i')->validate($data['date_debut'] ?? null)) {
-    $errors['date_debut'] = 'La date de début est invalide.';
-}
+        if (!v::dateTime('Y-m-d\TH:i')->validate($data['date_debut'] ?? null)) {
+            $errors['date_debut'] = 'La date de début est invalide.';
+        }
 
-if (!v::dateTime('Y-m-d\TH:i')->validate($data['date_fin'] ?? null)) {
-    $errors['date_fin'] = 'La date de fin est invalide.';
-}
+        if (!v::dateTime('Y-m-d\TH:i')->validate($data['date_fin'] ?? null)) {
+            $errors['date_fin'] = 'La date de fin est invalide.';
+        }
 
         return new ValidationResult(
             empty($errors),

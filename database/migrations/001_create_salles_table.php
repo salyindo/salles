@@ -2,7 +2,13 @@
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-Capsule::schema()->create('salles', function ($table) {
+$schema = Capsule::schema();
+
+if ($schema->hasTable('salles')) {
+    return;
+}
+
+$schema->create('salles', function ($table) {
     $table->id();
     $table->string('nom');
     $table->string('batiment');

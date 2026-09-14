@@ -23,7 +23,11 @@ class ReservationController
 
     public function index(): void
     {
-        $reservations = $this->reservationRepository->all();
+        $salleId = filter_input(INPUT_GET, 'salle_id', FILTER_VALIDATE_INT);
+        $reservations = $salleId !== false && $salleId !== null
+            ? $this->reservationRepository->bySalle($salleId)
+            : $this->reservationRepository->all();
+        $salles = $this->salleRepository->all();
 
         require __DIR__ . '/../../templates/reservation/index.php';
     }

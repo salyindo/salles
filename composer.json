@@ -1,5 +1,7 @@
 {
     "name": "saly-faye/reservation-salles",
+    "description": "Application PHP de gestion des salles et réservations universitaires",
+    "license": "proprietary",
     "autoload": {
         "psr-4": {
             "App\\": "src/"

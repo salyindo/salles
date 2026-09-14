@@ -28,13 +28,43 @@ Lancer l'application :
 php -S localhost:8000 -t public
 ```
 
-Avec Docker :
+Avec Docker, la base est créée et les cinq salles initiales sont ajoutées automatiquement au démarrage :
 
 ```bash
 docker compose up --build
 ```
 
 L'application est alors accessible sur http://localhost:8080.
+
+Pour arrêter les conteneurs :
+
+```bash
+docker compose down
+```
+
+Pour supprimer aussi les données MySQL :
+
+```bash
+docker compose down -v
+```
+
+## Versionnement
+
+Les étapes pédagogiques sont conservées dans les branches `feature/01-composer` à
+`feature/12-tests`, avec les tags `v0.0.0` à `v0.11.0`. La version finale est
+livrée avec la branche `release/1.0.0` et le tag `v1.0.0`.
+
+## Publication Docker Hub
+
+Remplacer `mon-compte` par le nom du compte Docker Hub connecté :
+
+```bash
+docker login
+docker build -t mon-compte/reservation-salles:1.0.0 -f docker/php/Dockerfile .
+docker tag mon-compte/reservation-salles:1.0.0 mon-compte/reservation-salles:latest
+docker push mon-compte/reservation-salles:1.0.0
+docker push mon-compte/reservation-salles:latest
+```
 
 ## Tests
 

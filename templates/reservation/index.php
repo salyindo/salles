@@ -10,6 +10,19 @@ ob_start();
     <a href="/reservations/create">➕ Nouvelle réservation</a>
 </p>
 
+<form method="get" action="/reservations">
+    <label for="salle_id">Filtrer par salle</label>
+    <select id="salle_id" name="salle_id">
+        <option value="">Toutes les salles</option>
+        <?php foreach ($salles as $salle): ?>
+            <option value="<?= (int) $salle->id ?>" <?= isset($salleId) && (int) $salleId === (int) $salle->id ? 'selected' : '' ?>>
+                <?= htmlspecialchars($salle->nom, ENT_QUOTES, 'UTF-8') ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+    <button type="submit">Filtrer</button>
+</form>
+
 <?php if (empty($reservations)): ?>
 
     <p>Aucune réservation trouvée.</p>
